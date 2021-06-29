@@ -1,8 +1,5 @@
 import torch
 from torch import  nn
-from torchvision import transforms
-from torchvision import datasets
-import torch.nn.functional as F
 from torch.utils.tensorboard import SummaryWriter
 
 class Generator(nn.Module):
@@ -15,9 +12,8 @@ class Generator(nn.Module):
     def forward(self, x):
         x = self.linear1(x)
         x = self.lrelu(x)
-        x = self.linear2(x.reshape(x.shape[0],-1))
+        x = self.linear2(x)
         return torch.tanh(x)
-
 
 if __name__ == "__main__":
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
