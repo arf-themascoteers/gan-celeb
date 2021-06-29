@@ -17,6 +17,7 @@ class Discriminator(nn.Module):
         self.linear1 = nn.Linear(256, 10)
 
     def forward(self, x):
+        x = x.reshape(1,28,28)
         x = self.cnn1(x)
         x = self.lrelu(x)
         x = self.maxpool1(x)
